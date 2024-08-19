@@ -1,10 +1,18 @@
-
+import Navbar from "./components/Navbar"
+import Hero from "./components/Hero"
+import HomeCards from "./components/HomeCards"
+import JobListings from "./components/JobListings"
+import ViewAllJobs from "./components/ViewAllJobs"
 
 function App() {
-
   return (
     <>
-    <h1 className="text-3xl">React application</h1>
+    <Navbar/>
+    <Hero title = "React Dev Community" description = "Find the React job that fits your skills and needs"/>
+
+    <HomeCards/>
+    <JobListings/>
+    <ViewAllJobs/>
     </>
   )
 }
