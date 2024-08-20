@@ -1,9 +1,29 @@
-import React from 'react'
-import jobs from '../../src/jobs.json'
+import {useState} from 'react'
+import React, { useEffect } from 'react'
 import JobListing from './JobListing'
 
+
 const JobListings = ({isHome= false}) => {
-  const jobListings = isHome?jobs.slice(0,3):jobs;
+  const [jobs, setJobs] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  useEffect(()=>{
+    const fetchJobs = async ()=>{
+      try{
+        const res = await fetch('http://localhost:8000/jobs')
+      const data = await res.json()
+      setJobs(data);
+      
+      }catch(error){
+        console.log(error.message);
+      } finally{
+        setLoading(false);
+      }
+    }
+    fetchJobs();
+  }
+  , [])
+  
   return (
   
     <div>
@@ -16,7 +36,7 @@ const JobListings = ({isHome= false}) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* <!-- Job Listing 1 --> */}
 
-          {jobListings.map((job)=>(
+          {jobs.map((job)=>(
            <JobListing key= {job.id} job={job}/>
           ))}
           
