@@ -1,10 +1,27 @@
 import React from 'react'
-import JobListings from '../components/JobListings'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+
 const JobPage = () => {
+    const [job, setJob] = useState({})
+    const {id} = useParams()
+
+    useEffect(()=>{
+        const fetchData = async()=>{
+            try{
+                const res = await fetch(`http://localhost:8000/jobs/${id}`)
+            const data = await res.json()
+            setJob(data)
+            console.log(job)
+            }catch(error){
+                console.log(error.message)
+            }
+        }
+        fetchData()
+    },
+[])
   return (
-    <section className='bg-blue-50 px-4 py-6'>
-      <JobListings isHome= {false}/>
-    </section>
+    <div>{job.title}</div>
   )
 }
 
