@@ -1,11 +1,20 @@
 // import { useState, useEffect } from 'react'
-import { useParams, useLoaderData, Link } from 'react-router-dom'
+import { useParams, useLoaderData, Link, useNavigate } from 'react-router-dom'
 
 const JobPage = () => {
     // const [job, setJob] = useState({})
     // const urlParams = useParams()
     // console.log(`UrlParams: ${urlParams.id}`)
     const job = useLoaderData();
+    const {id} = useParams()
+    const navigate = useNavigate()
+    const deleteJob = async()=>{
+      await fetch(`http://localhost:8000/jobs/${id}`,{
+        method: 'DELETE'
+      }
+      )
+      return navigate('/jobs')
+    }
 //     useEffect(()=>{
 //         const fetchData = async()=>{
 //             try{
@@ -98,12 +107,11 @@ const JobPage = () => {
             {/* <!-- Manage --> */}
             <div className="bg-white p-6 rounded-lg shadow-md mt-6">
               <h3 className="text-xl font-bold mb-6">Manage Job</h3>
-              <a
-                href="/add-job.html"
+              <Link
+                to={`/edit-job/${job.id}`}
                 className="bg-indigo-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
-                >Edit Job</a
-              >
-              <button
+                >Edit Job</Link>
+              <button onClick={deleteJob}
                 className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
               >
                 Delete Job
