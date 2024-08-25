@@ -4,10 +4,12 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import HomePage from './pages/home/HomePage'
 import CartPage from "./pages/cart/CartPage"
 import PlaceOrderPage from "./pages/placeOrder/PlaceOrderPage"
+import StoreContextProvider from "./contexts/StoreContext"
 
 function App() {
   return (
     <BrowserRouter>
+    <StoreContextProvider>
         <div className="app">
         <Navbar/>
     <Routes>
@@ -17,6 +19,7 @@ function App() {
     </Routes>
    
     </div>
+    </StoreContextProvider>
     </BrowserRouter>
   )
 }

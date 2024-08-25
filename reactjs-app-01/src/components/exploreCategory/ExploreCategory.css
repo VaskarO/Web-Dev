@@ -54,3 +54,8 @@
     height: 2px;
 }
 
+.explore-category-list-item .active{
+    border:5px solid blueviolet;
+    padding:3px
+}
+
