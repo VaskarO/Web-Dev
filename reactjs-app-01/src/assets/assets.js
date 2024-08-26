@@ -1,11 +1,17 @@
 import logo from './logo.jpg';
 import search_icon from './search_icon.png';
-import cart from './cart.png'
+import cart from './cart.png';
+import add from './add.png';
+import plus from './plus.png';
+import minus from './minus.png';
 
 export const assets = {
     logo,
     search_icon,
-    cart
+    cart,
+    add,
+    plus,
+    minus
 }
 
 export const category_list =[
@@ -83,5 +89,14 @@ export const book_list =[
         price: '11',
         description: 'This is book description',
         categroy: 'Art'
-    },
+    }
+    , 
+    {
+        _id:'5',
+        name:'book_5',
+        img:logo,
+        price: '11',
+        description: 'This is book description',
+        categroy: 'Art'
+    }
 ]

@@ -5,6 +5,9 @@ export const StoreContext = createContext(null)
 
 const StoreContextProvider = (props)=>{
 
+    // const [cartItem, setCartItem] = useState({})
+
+
     const contextValue = {
         book_list
     }

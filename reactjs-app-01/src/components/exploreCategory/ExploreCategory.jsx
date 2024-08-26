@@ -8,7 +8,7 @@ const ExploreCategory = ({category, setCategory}) => {
         <p className='explore-category-text'>Wide range of genre to explore on offer for you.</p>
         <div className="explore-category-list">
           {category_list.map((item, index)=>{
-            return (<div onClick={() => (setCategory(prev=>prev === item.category_name?'all':item.category_name))} key={index} className='explore-category-list-item'> 
+            return (<div onClick={() => (setCategory(prev=>(prev === item.category_name?'all':item.category_name)))} key={index} className='explore-category-list-item'> 
             <img className={category===item.category_name?'active':''} src={item.category_image} alt="" />
             <p>{item.category_name}</p>
             </div>)
