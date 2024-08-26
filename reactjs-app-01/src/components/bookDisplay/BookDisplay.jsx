@@ -10,7 +10,7 @@ const BookDisplay = ({category}) => {
       <h1 className='text-2xl text-blue-600'>Top selling product right now.</h1>
       <div className='flex justify-center gap-6 pt-6 pb-6 w-5/6 flex-wrap'>
         {book_list.map((item, index)=>{
-          console.log(category, item.category)
+          // console.log(category, item.category)
           if(category ==='all' || category === item.category){
             return <BookItem key={index} item = {item}/>
           }

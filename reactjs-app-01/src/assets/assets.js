@@ -92,7 +92,7 @@ export const book_list =[
     }
     , 
     {
-        _id:'5',
+        _id:'6',
         name:'book_5',
         img:logo,
         price: '11',

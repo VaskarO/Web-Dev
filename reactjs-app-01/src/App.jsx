@@ -5,7 +5,7 @@ import HomePage from './pages/home/HomePage'
 import CartPage from "./pages/cart/CartPage"
 import PlaceOrderPage from "./pages/placeOrder/PlaceOrderPage"
 import StoreContextProvider from "./contexts/StoreContext"
-
+import Footer from "./components/footer/Footer"
 function App() {
   return (
     <BrowserRouter>
@@ -17,7 +17,7 @@ function App() {
       <Route path = '/cart' element = {<CartPage/>} />
       <Route path = '/order' element = {<PlaceOrderPage/>}/>
     </Routes>
-   
+    <Footer/>
     </div>
     </StoreContextProvider>
     </BrowserRouter>
