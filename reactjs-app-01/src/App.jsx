@@ -6,12 +6,16 @@ import CartPage from "./pages/cart/CartPage"
 import PlaceOrderPage from "./pages/placeOrder/PlaceOrderPage"
 import StoreContextProvider from "./contexts/StoreContext"
 import Footer from "./components/footer/Footer"
+import LoginPopup from "./components/loginPopup/LoginPopup"
+import { useState } from "react"
 function App() {
+  const [showLogin, setShowLogin] = useState(false)
   return (
     <BrowserRouter>
     <StoreContextProvider>
+      {showLogin?<LoginPopup setShowLogin={setShowLogin}/>:<></>}
         <div className="app">
-        <Navbar/>
+        <Navbar setShowLogin = {setShowLogin}/>
     <Routes>
       <Route path= '/' element= {<HomePage/>}/>
       <Route path = '/cart' element = {<CartPage/>} />
