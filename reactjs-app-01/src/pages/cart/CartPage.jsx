@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
-import './CartPage.css'
 import {StoreContext} from '../../contexts/StoreContext'
 
 
 const CartPage = () => {
-  const {testData, cartItem, book_list} = useContext(StoreContext)
-
+  const {cartItem, book_list,setCartItem,  removeFromCart} = useContext(StoreContext)
+  let totalPrice = 0;
+  const handleRemove = (obj, propKey)=>{
+    return delete obj.propKey
+  }
 
   return (
     <>
@@ -25,6 +27,8 @@ const CartPage = () => {
           
             {book_list.map((item,index)=>{
               if(cartItem[item._id]>0){
+                totalPrice += (item.price*cartItem[item._id])
+
                 return(
                   <tr key={index} className='border-b-2'>
                   <td className=' text-center p-3 drop-shadow-lg' ><img className='mx-auto w-9 h-9' src={item.img} alt="" /></td>
@@ -32,7 +36,7 @@ const CartPage = () => {
                   <td className=' text-center p-3'>{item.price}</td>
                   <td className=' text-center p-3'>{cartItem[item._id]}</td>
                   <td className=' text-center p-3'>{item.price * cartItem[item._id] }</td>
-                  <td className=' text-center p-3 text-red-600 cursor-pointer'>Remove</td>
+                  <td onClick={()=>( setCartItem((prev)=>({...prev, [item._id]:0})))} className=' text-center p-3 text-red-600 cursor-pointer'>Remove</td>
                   </tr>
                 )
               }
@@ -51,16 +55,22 @@ const CartPage = () => {
               <th>Total</th>
               </tr>
           </thead>
-          <tr className='border-b-2'>
-            <td className=' text-center p-3' >1</td>
-            <td className=' text-center p-3'>2</td>
-            <td className=' text-center p-3'>3</td>
-          </tr>
-          <tr className='border-b-2'>
-            <td className=' text-center p-3' >4</td>
-            <td className=' text-center p-3'>5</td>
-            <td className=' text-center p-3'>9</td>
-          </tr>
+         
+            {Object.keys(cartItem).length<1?(
+              <tr className='border-b-2'>
+              <td className=' text-center p-3' >-</td>
+              <td className=' text-center p-3'>-</td>
+              <td className=' text-center p-3'>-</td>
+              </tr>
+            ):(
+               <tr className='border-b-2'>
+                     <td className=' text-center p-3' >$. {totalPrice}</td>
+                     <td className=' text-center p-3'>$. 15</td>
+                     <td className=' text-center p-3'>$.{totalPrice+15}</td>
+                     </tr>
+            )}
+      
+       
      
         </table>
         </div>

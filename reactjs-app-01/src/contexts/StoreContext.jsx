@@ -20,7 +20,6 @@ const StoreContextProvider = (props)=>{
     }
 
     const contextValue = {
-        testData,
         book_list,
         cartItem,
         setCartItem,
