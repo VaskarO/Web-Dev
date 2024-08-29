@@ -3,7 +3,7 @@ import { useState } from 'react'
 const LoginPopup = ({setShowLogin}) => {
     const [signupForm, setSignupForm] = useState('Sign Up')
   return (
-    <div className='flex flex-col w-full items-center justify-center mx-auto p-9 absolute z-10  bg-opacity-50 bg-black'>
+    <div className='flex flex-col h-lvh w-full items-center justify-center mx-auto p-9 absolute z-10  bg-opacity-50 bg-black'>
         <form action="" className='flex justify-center py-9 w-1/3  bg-slate-400 '>
             <div className='flex flex-col '>
                 <div>

@@ -28,6 +28,7 @@ const StoreContextProvider = (props)=>{
     }
 
     useEffect(()=>{
+        console.log('cartItem')
         console.log(cartItem)
     }, [cartItem])
     return (
