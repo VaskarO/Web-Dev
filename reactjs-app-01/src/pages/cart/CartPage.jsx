@@ -4,10 +4,12 @@ import {StoreContext} from '../../contexts/StoreContext'
 
 
 const CartPage = () => {
-  const {cartItem} = useContext(StoreContext)
+  const {testData, cartItem, book_list} = useContext(StoreContext)
+
 
   return (
     <>
+    {console.log(cartItem)}
       <div className='flex items-center justify-center m-auto my-9 w-2/3'>
         <table className='bg-slate-100 w-full border-b-2'>
           <thead className='py-3 border-b-2 bg-slate-200'>
@@ -20,30 +22,22 @@ const CartPage = () => {
               <th>Action</th>
               </tr>
           </thead>
-          <tr className='border-b-2'>
-            <td className=' text-center p-3' >1</td>
-            <td className=' text-center p-3'>title1</td>
-            <td className=' text-center p-3'>1$</td>
-            <td className=' text-center p-3'>Q1</td>
-            <td className=' text-center p-3'>1$</td>
-            <td className=' text-center p-3'>X</td>
-          </tr>
-          <tr className='border-b-2'>
-            <td className=' text-center p-3' >1</td>
-            <td className=' text-center p-3'>title1</td>
-            <td className=' text-center p-3'>1$</td>
-            <td className=' text-center p-3'>Q1</td>
-            <td className=' text-center p-3'>1$</td>
-            <td className=' text-center p-3'>X</td>
-          </tr>
-          <tr className='border-b-2'>
-            <td className=' text-center p-3' >1</td>
-            <td className=' text-center p-3'>title1</td>
-            <td className=' text-center p-3'>1$</td>
-            <td className=' text-center p-3'>Q1</td>
-            <td className=' text-center p-3'>1$</td>
-            <td className=' text-center p-3'>X</td>
-          </tr>
+          
+            {book_list.map((item,index)=>{
+              if(cartItem[item._id]>0){
+                return(
+                  <tr key={index} className='border-b-2'>
+                  <td className=' text-center p-3 drop-shadow-lg' ><img className='mx-auto w-9 h-9' src={item.img} alt="" /></td>
+                  <td className=' text-center p-3'>{item.name}</td>
+                  <td className=' text-center p-3'>{item.price}</td>
+                  <td className=' text-center p-3'>{cartItem[item._id]}</td>
+                  <td className=' text-center p-3'>{item.price * cartItem[item._id] }</td>
+                  <td className=' text-center p-3 text-red-600 cursor-pointer'>Remove</td>
+                  </tr>
+                )
+              }
+            })}
+           
         </table>
       </div>
       <div className='flex w-2/3 justify-center my-6 mx-auto'>
@@ -82,7 +76,7 @@ const CartPage = () => {
       </div>
       <div>
         { 
-        console.log(cartItem)
+        // console.log(cartItem)
           // book_list.map((item, index)=>{
           //   if(cartItem[item._id]>0){
           //     return (

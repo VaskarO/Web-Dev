@@ -62,7 +62,7 @@ export const book_list =[
         _id:'2',
         name:'book_2',
         img:logo,
-        price: '11',
+        price: '23',
         description: 'This is book description',
         categroy: 'Drama'
     },
@@ -70,7 +70,7 @@ export const book_list =[
         _id:'3',
         name:'book_3',
         img:logo,
-        price: '11',
+        price: '42',
         description: 'This is book description',
         categroy: 'History'
     },
@@ -78,7 +78,7 @@ export const book_list =[
         _id:'4',
         name:'book_4',
         img:logo,
-        price: '11',
+        price: '16',
         description: 'This is book description',
         categroy: 'Sci-fi'
     }, 
@@ -86,7 +86,7 @@ export const book_list =[
         _id:'5',
         name:'book_5',
         img:logo,
-        price: '11',
+        price: '65',
         description: 'This is book description',
         categroy: 'Art'
     }
@@ -95,7 +95,7 @@ export const book_list =[
         _id:'6',
         name:'book_5',
         img:logo,
-        price: '11',
+        price: '34',
         description: 'This is book description',
         categroy: 'Art'
     }
