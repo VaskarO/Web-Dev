@@ -1,11 +1,25 @@
-import React from 'react'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Home from './pages/Home'
+import About from './pages/About'
+import Profile from './pages/Profile'
+import Signup from './pages/Signup'
+import Signin from './pages/Signin'
+import Header from './components/Header'
+
 
 const App = () => {
   return (
-    <div className='flex flex-col text-cemter justify-center h-screen items-center'>
-      <h1 className='text-3xl'>Hello,</h1>
-      <h2  className='text-md'>Your property listing website.</h2>
-    </div>
+
+    <BrowserRouter>
+    <Header/>
+      <Routes>
+        <Route  path='/' element= {<Home/>}/>
+        <Route  path='/about' element= {<About/>}/>
+        <Route  path='/profile' element= {<Profile/>}/>
+        <Route  path='/signup' element= {<Signup/>}/>
+        <Route  path='/signin' element= {<Signin/>}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

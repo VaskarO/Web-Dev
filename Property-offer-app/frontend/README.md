@@ -1,1 +1,1 @@
-# A sales and rental property listing service provider webapplication.
+# A sales and rental property listing service provider web application.
