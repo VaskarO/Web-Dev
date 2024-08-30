@@ -5,7 +5,7 @@ import { assets } from '../../assets/assets'
 import { StoreContext } from '../../contexts/StoreContext'
 
 const Navbar = ({setShowLogin}) => {
-    const {cartItem} = useContext(StoreContext)
+    const {cartItemLength} = useContext(StoreContext)
     const [menu, setmenu] = useState("home")
     
   return (
@@ -21,9 +21,7 @@ const Navbar = ({setShowLogin}) => {
             <img src={assets.search_icon} alt="" />
             <div className="navbar-search-icon">
                 <Link to= '/cart'><img src={assets.cart} alt="" /></Link>
-                {Object.keys(cartItem).length===0?(
-                   <></>
-                ): <div className = "dot"></div>}
+                 <div className ={cartItemLength()===0?"":"dot"} ></div>
                 
             </div>
             <button onClick={()=>setShowLogin(true)}> Sign in</button>

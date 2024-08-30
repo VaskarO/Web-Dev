@@ -19,12 +19,17 @@ const StoreContextProvider = (props)=>{
         setCartItem((prev)=>({...prev, [itemId]:prev[itemId]-1}))
     }
 
+    const cartItemLength =()=>{
+        return Object.keys(cartItem).length
+    } 
+
     const contextValue = {
         book_list,
         cartItem,
         setCartItem,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        cartItemLength
     }
 
     useEffect(()=>{

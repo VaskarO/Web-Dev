@@ -64,9 +64,9 @@ const CartPage = () => {
               </tr>
             ):(
                <tr className='border-b-2'>
-                     <td className=' text-center p-3' >$. {totalPrice}</td>
-                     <td className=' text-center p-3'>$. 15</td>
-                     <td className=' text-center p-3'>$.{totalPrice+15}</td>
+                     <td className=' text-center p-3' >$. {totalPrice==0?"-":totalPrice}</td>
+                     <td className=' text-center p-3'>$. {totalPrice>0?"15":"-"}</td>
+                     <td className=' text-center p-3'>$.{totalPrice>0?15+totalPrice:"-"}</td>
                      </tr>
             )}
       
