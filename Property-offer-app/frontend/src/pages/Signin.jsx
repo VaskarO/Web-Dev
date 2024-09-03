@@ -26,7 +26,7 @@ const Signin = () => {
       console.log(data)
 
       if(data.success === false){
-        console.log('LOGIN FAILED')
+        return alert("Login credential invalid")
       }
       navigate('/profile')
     }catch(error){
