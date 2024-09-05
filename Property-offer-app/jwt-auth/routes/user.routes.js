@@ -1,5 +1,5 @@
 import express from  'express'
-import { register } from '../controller/user.controller.js'
+import { auth, login, logout, profile, register } from '../controller/user.controller.js'
 
 
 const userRoute= express.Router()
@@ -7,13 +7,12 @@ const userRoute= express.Router()
 
 userRoute.post('/register', register)
 
-userRoute.post('/login',(req, res)=> res.send('login'))
+userRoute.post('/login',login)
 
-userRoute.post('/auth', (req, res)=>res.send('auth route'))
+userRoute.post('/auth', auth)
+userRoute.get('/profile',profile)
 
-userRoute.get('/profile',(req, res)=> res.send('profile'))
-
-userRoute.post('/logout',(req, res)=> res.send('logout'))
+userRoute.post('/logout',logout)
 
 // export const userLogin = app.post('/login', loginUser)
 
