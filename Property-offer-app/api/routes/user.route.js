@@ -1,5 +1,5 @@
 import express from 'express';
-import { test, userUpdate } from '../controller/user.controller.js';
+import { userProfile, userUpdate } from '../controller/user.controller.js';
 import { verifyUser } from '../utils/verifyUser.js';
 
 const userRouter = express.Router()
@@ -9,7 +9,8 @@ const userRouter = express.Router()
 //     return res.send('Hello from user route.')
 // })
 
-userRouter.get('/test', test)
+userRouter.get('/userProfile/:id',verifyUser, userProfile)
 userRouter.post('/update/:id',verifyUser, userUpdate)
+
 
 export default userRouter

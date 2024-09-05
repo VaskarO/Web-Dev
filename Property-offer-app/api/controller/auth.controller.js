@@ -1,12 +1,11 @@
 import bcryptjs from 'bcryptjs'
 import User from '../models/User.model.js'
 import { handleError } from '../utils/handleError.js';
-import jwt from 'jsonwebtoken'
 import { generateToken } from '../utils/generateTokens.js';
 
 export const signup= async (req, res, next)=>{
     const {username, email, password} = req.body;
-    console.log(username)
+    // console.log(username)
     if(!username || !email || !password){
         res.status(400).json("All field required!!")
     } 
@@ -33,7 +32,7 @@ export const signin = async (req, res, next)=>{
         if(!validPassword){
             return next(handleError(401, 'Invalid username or password'))
         }
-        console.log(currentUser._id)
+        // console.log(currentUser._id)
         generateToken(res, currentUser._id)
         res.status(201).json({
             _id:currentUser._id,
