@@ -2,22 +2,14 @@ import { handleError } from './handleError.js';
 // import User from '../models/User.model.js';
 
 import jwt from 'jsonwebtoken'
-export const verifyUser = (req, res, next)=>{
+export const getCurrentUser = (req, res, next)=>{
     const token = req.cookies.accessToken;
     if(!token) return  next(handleError(401, 'Unauthorized'))
     
     
     jwt.verify(token, 'JWT-SECRET-KEY', (err, user)=>{
             if(err) return next(handleError(403, 'Not allowded'))
-            // req.user = user;
-            if(req.params.id !== user.userId ){
-                return next(handleError(403, 'User didnot match!'))
-            }
-            // console.log(req.params.id)
-            // console.log(user.userId)
-            req.verifiedUserId = user.userId
-            req.jwt_token = token;
+            req.userId = user.userId            ;
             next()
-
         })
 }

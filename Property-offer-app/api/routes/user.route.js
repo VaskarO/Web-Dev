@@ -1,5 +1,5 @@
 import express from 'express';
-import { userProfile, userUpdate } from '../controller/user.controller.js';
+import { getUserProfile, updateUserProfile, deleteUserProfile } from '../controller/user.controller.js';
 import { verifyUser } from '../utils/verifyUser.js';
 
 const userRouter = express.Router()
@@ -9,8 +9,9 @@ const userRouter = express.Router()
 //     return res.send('Hello from user route.')
 // })
 
-userRouter.get('/userProfile/:id',verifyUser, userProfile)
-userRouter.post('/update/:id',verifyUser, userUpdate)
+userRouter.get('/userProfile/:id',verifyUser, getUserProfile)
+userRouter.delete('/userProfile/:id',verifyUser, deleteUserProfile)
+userRouter.put('/updateProile/:id',verifyUser, updateUserProfile)
 
 
 export default userRouter
