@@ -45,3 +45,14 @@ export const updateAdvertisement = async (req, res, next)=>{
         next(handleError(500, err.message))
     }
 }
+
+export const getAllAdvertisements = async (req, res, next)=>{
+    try{
+        const getAllAdveritisements = await AdveriseList.find()
+            // res.status(200).json({'message':"updated"})
+            res.status(200).json({'success':'true', 'advertisements':getAllAdveritisements})
+            
+    }catch(err){
+        next(handleError(500, err.message))
+    }
+}
