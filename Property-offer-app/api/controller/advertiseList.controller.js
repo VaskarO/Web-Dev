@@ -56,3 +56,27 @@ export const getAllAdvertisements = async (req, res, next)=>{
         next(handleError(500, err.message))
     }
 }
+
+export const deleteAdvertisement = async(req, res, next){
+    try{
+        const deleteAdvertise = await AdveriseList.findByIdAndDelete({_id:req.params.id})
+        if(deleteAdvertise){
+            res.status(200).json({'success':'true', 'message': `Advertisement with id ${req.params.id } is deleted.`} )
+        }
+    }catch(error){
+        return next(handleError('500', error.message))
+    }
+}
+
+export const getAdvertisementsByUser = async(req, res, next)=>{
+    const userId = req.userId
+    try{
+        const useAdvertiseList = await AdveriseList.findById({createdBy:userId});
+        if(useAdvertiseList){
+            res.status(200).json({Advertisements: useAdvertiseList})
+        }
+    }catch(error){
+        next(500, error.message)
+    }
+
+}

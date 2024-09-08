@@ -47,6 +47,6 @@ const advertiseSchema = mongoose.Schema({
         required:true
     }
 
-})
+}, {timeStamps:true})
 
 export const AdveriseList = mongoose.model('AdvertiseList', advertiseSchema)
