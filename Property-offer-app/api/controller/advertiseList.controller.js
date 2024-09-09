@@ -80,3 +80,15 @@ export const getAdvertisementsByUser = async(req, res, next)=>{
     }
 
 }
+
+export const getAdvertiseById = async(req, res, next)=>{
+    try{
+        const advertiseemnt = await AdveriseList.findById({_id:req.params.id});
+        if(advertiseemnt){
+            res.status(200).json({advertiseemnt: advertiseemnt})
+        }
+    }catch(error){
+        next(500, error.message)
+    }
+
+}
