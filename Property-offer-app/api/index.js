@@ -5,6 +5,8 @@ import cookieParser from 'cookie-parser';
 import userRouter from './routes/user.route.js';
 import authRoute from './routes/auth.route.js';
 import advertiseListRoute from './routes/advertiseList.route.js'
+import appointmentRouter from './routes/appointment.rout.js';
+
 dotenv.config()
 
 const app = express();
@@ -26,6 +28,7 @@ app.use('/api/user', userRouter)
 app.use('/api/auth', authRoute)
 // app.use('api/advertiseList',advertiseListRoute)
 app.use('/api/advertiseList',advertiseListRoute)
+app.use('/app/appointmentRouter',appointmentRouter)
 
 
 app.use((error, req, res, next)=>{
