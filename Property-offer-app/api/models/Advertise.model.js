@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const advertiseSchema = mongoose.Schema({
+const advertiseSchema = new mongoose.Schema({
     advertiseType:{
         type:String,
         required:true,
@@ -42,10 +42,7 @@ const advertiseSchema = mongoose.Schema({
         type:Boolean,
         required:false,
     },
-    createdBy:{
-        type:String,
-        required:true
-    }
+    createdBy:{type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 
 }, {timeStamps:true})
 

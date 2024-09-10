@@ -9,7 +9,7 @@ export const getCurrentUser = (req, res, next)=>{
     
     jwt.verify(token, 'JWT-SECRET-KEY', (err, user)=>{
             if(err) return next(handleError(403, 'Not allowded'))
-            req.userId = user.userId            ;
+            req.userId = user.userId;
             next()
         })
 }

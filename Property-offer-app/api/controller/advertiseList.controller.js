@@ -57,7 +57,7 @@ export const getAllAdvertisements = async (req, res, next)=>{
     }
 }
 
-export const deleteAdvertisement = async(req, res, next){
+export const deleteAdvertisement = async(req, res, next)=>{
     try{
         const deleteAdvertise = await AdveriseList.findByIdAndDelete({_id:req.params.id})
         if(deleteAdvertise){
@@ -70,8 +70,9 @@ export const deleteAdvertisement = async(req, res, next){
 
 export const getAdvertisementsByUser = async(req, res, next)=>{
     const userId = req.userId
+    console.log(userId)
     try{
-        const useAdvertiseList = await AdveriseList.findById({createdBy:userId});
+        const useAdvertiseList = await AdveriseList.find({createdBy:userId});
         if(useAdvertiseList){
             res.status(200).json({Advertisements: useAdvertiseList})
         }
@@ -81,7 +82,7 @@ export const getAdvertisementsByUser = async(req, res, next)=>{
 
 }
 
-export const getAdvertiseById = async(req, res, next)=>{
+export const getAdvertisementsById = async(req, res, next)=>{
     try{
         const advertiseemnt = await AdveriseList.findById({_id:req.params.id});
         if(advertiseemnt){

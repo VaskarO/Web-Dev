@@ -5,14 +5,14 @@ import cookieParser from 'cookie-parser';
 import userRouter from './routes/user.route.js';
 import authRoute from './routes/auth.route.js';
 import advertiseListRoute from './routes/advertiseList.route.js'
-import appointmentRouter from './routes/appointment.rout.js';
+import appointmentRouter from './routes/appointment.route.js';
 
 dotenv.config()
-
 const app = express();
 
 app.use(express.json())
 app.use(cookieParser())
+
 
 mongoose.connect(process.env.DB_CONNECT).then(()=>{
     console.log('DB CONNECTED..')
@@ -20,15 +20,17 @@ mongoose.connect(process.env.DB_CONNECT).then(()=>{
     console.log(error)
 })
 
+
 app.listen(3000, ()=>{
     console.log('Server running at port 3000.')
 })
+
 
 app.use('/api/user', userRouter)
 app.use('/api/auth', authRoute)
 // app.use('api/advertiseList',advertiseListRoute)
 app.use('/api/advertiseList',advertiseListRoute)
-app.use('/app/appointmentRouter',appointmentRouter)
+app.use('/api/appointmentRouter',appointmentRouter)
 
 
 app.use((error, req, res, next)=>{

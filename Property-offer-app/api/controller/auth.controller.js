@@ -14,6 +14,9 @@ export const signup= async (req, res, next)=>{
     const newUser = new User({username, email,password:encryptedPassword});
     try{
         await newUser.save()
+        res.clearCookie('accessToken')
+        generateToken(res, newUser._id)
+
         res.status(201).json({"message":"user created successfully."})
     }catch(err){
         next(err)
@@ -32,6 +35,7 @@ export const signin = async (req, res, next)=>{
         if(!validPassword){
             return next(handleError(401, 'Invalid username or password'))
         }
+        res.clearCookie('accessToken')
         // console.log(currentUser._id)
         generateToken(res, currentUser._id)
         res.status(201).json({
@@ -45,4 +49,20 @@ export const signin = async (req, res, next)=>{
     }catch(error){
         next(error)
     }
+}
+
+export const logout = async(req, res,next)=>{
+    try{
+        if(req.cookies= 'accessToken'){
+            if(res.clearCookie('accessToken')){
+                res.status(200).json({message: 'user logged out.'})
+                next()
+            }
+        }
+    }catch(err){
+        handleError(404, err.message)
+        next()
+    }
+
+ 
 }
