@@ -6,7 +6,7 @@ import Signup from './pages/Signup'
 import Signin from './pages/Signin'
 import Header from './components/Header'
 import Advertisements from './pages/Advertisements'
-
+import AdDetail from './pages/AdDetail'
 
 const App = () => {
   return (
@@ -20,6 +20,7 @@ const App = () => {
         <Route  path='/signup' element= {<Signup/>}/>
         <Route  path='/signin' element= {<Signin/>}/>
         <Route path = '/advertisements' element = {<Advertisements/>}/>
+        <Route path = '/adDetails' element = {<AdDetail/>}/>
       </Routes>
     </BrowserRouter>
   )

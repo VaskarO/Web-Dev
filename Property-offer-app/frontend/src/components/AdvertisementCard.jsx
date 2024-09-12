@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import thumbnail from '../assets/images/300x200.png'
 import { FaMapMarkerAlt  } from 'react-icons/fa'
 
@@ -12,7 +13,8 @@ const AdvertisementCard = () => {
     <FaMapMarkerAlt /> 
     <p >Street, City, ST</p>
     </div>
-    <button className='bg-blue-900 text-white w-full mt-2 py-2 rounded-md float-right font-semibold hover:bg-blue-800 hover:text-gray-200'>More details</button>
+    <Link to={'/adDetails'}>    <button className='bg-blue-900 text-white w-full mt-2 py-2 rounded-md float-right font-semibold hover:bg-blue-800 hover:text-gray-200'>More details</button></Link>
+
     </div>
   )
 }
