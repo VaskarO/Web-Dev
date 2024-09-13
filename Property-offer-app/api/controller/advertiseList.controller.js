@@ -83,6 +83,7 @@ export const getAdvertisementsByUser = async(req, res, next)=>{
 }
 
 export const getAdvertisementsById = async(req, res, next)=>{
+    console.log(req.params.id)
     try{
         const advertiseemnt = await AdveriseList.findById({_id:req.params.id});
         if(advertiseemnt){

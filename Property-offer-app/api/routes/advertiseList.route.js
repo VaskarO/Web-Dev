@@ -9,7 +9,7 @@ advertiseListRoute.post('/create',getCurrentUser, createAdvertise)
 advertiseListRoute.post('/update/:id',getCurrentUser, updateAdvertisement)
 advertiseListRoute.get('/advertisements', getAllAdvertisements)
 advertiseListRoute.delete('/delete', deleteAdvertisement)
-advertiseListRoute.get('/advertiseemnt/:id', getAdvertisementsById)
+advertiseListRoute.get('/advertisement/:id', getAdvertisementsById)
 advertiseListRoute.get('/yourAdvertisements/',getCurrentUser, getAdvertisementsByUser)
 
 export default advertiseListRoute
