@@ -1,7 +1,11 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
+import UserContext from '../contexts/UserContext'
 
 const Signin = () => {
+  const {setLoggedIn} = useContext(UserContext)
+  const {setUserInfo} = useContext(UserContext)
+
   const navigate = useNavigate()
   const [signinData, setSigninData] = useState({})
   
@@ -27,13 +31,19 @@ const Signin = () => {
 
       if(data.success === false){
         return alert("Login credential invalid")
+        navigate('/signin')
       }
+      setLoggedIn(true)
+      setUserInfo(data)
       navigate('/profile')
+
     }catch(error){
       console.log(error)
     }
 
   }
+
+  
   return (
     <div className='flex flex-col mx-auto my-auto pt-15 justify-center min-h-screen bg-slate-300 items-center'>
     <h1 className='pb-10 text-3xl center text font-bold ' >Sign In</h1>

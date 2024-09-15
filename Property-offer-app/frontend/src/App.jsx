@@ -7,10 +7,10 @@ import Signin from './pages/Signin'
 import Header from './components/Header'
 import Advertisements from './pages/Advertisements'
 import AdDetail from './pages/AdDetail'
-
+import UserContextProvider from './contexts/UserContextProvider'
 const App = () => {
   return (
-
+    <UserContextProvider>
     <BrowserRouter>
     <Header/>
       <Routes>
@@ -23,6 +23,7 @@ const App = () => {
         <Route path = '/adDetails/:id' element = {<AdDetail/>}/>
       </Routes>
     </BrowserRouter>
+    </UserContextProvider>
   )
 }
 

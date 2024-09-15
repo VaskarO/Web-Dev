@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSearch, FaBars, FaTimes } from 'react-icons/fa';
-
+import UserContext from '../contexts/UserContext';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const {loggedIn} = useContext(UserContext)
   return (
     <header className="flex h-16 w-full bg-gray-200 justify-between items-center px-4 sm:px-6">
       {/* Logo */}
@@ -34,11 +34,19 @@ const Header = () => {
           <Link className="py-2 px-4 sm:px-0 sm:py-0" to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
           <Link className="py-2 px-4 sm:px-0 sm:py-0" to="/about" onClick={() => setIsMenuOpen(false)}>About</Link>
           <Link className="py-2 px-4 sm:px-0 sm:py-0" to="/profile" onClick={() => setIsMenuOpen(false)}>Profile</Link>
-          <Link className="py-2 px-4 sm:px-0 sm:py-0" to="/signup" onClick={() => setIsMenuOpen(false)}>
+          {console.log(loggedIn)}
+          {loggedIn === true?
+          
+           <Link className="py-2 px-4 sm:px-0 sm:py-0" to="" onClick={() => setIsMenuOpen(false)}>
+           <button className="bg-red-800 drop-shadow-xl cursor-pointer px-3 py-1 rounded-sm text-gray-100 font-medium">
+             Logout
+           </button>
+           </Link>  
+          :  <Link className="py-2 px-4 sm:px-0 sm:py-0" to="/signup" onClick={() => setIsMenuOpen(false)}>
             <button className="bg-green-800 drop-shadow-xl cursor-pointer px-3 py-1 rounded-sm text-gray-100 font-medium">
               Sign Up
             </button>
-          </Link>
+          </Link>}
         </div>
       </nav>
 
