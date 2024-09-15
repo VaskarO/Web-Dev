@@ -1,10 +1,43 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaBars, FaTimes } from 'react-icons/fa';
 import UserContext from '../contexts/UserContext';
+
 const Header = () => {
+  const navigate = useNavigate()
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {loggedIn} = useContext(UserContext)
+  const {setLoggedIn} = useContext(UserContext)
+  const {setUserInfo} = useContext(UserContext)
+  const [logoutMessage, setLogoutMessage] = useState('')
+
+  const handleLogout = async (e)=>  {
+    e.preventDefault();
+    try{
+      const res = await fetch('/api/auth/logout',{
+        method:'POST',
+        headers: {
+          'Content-Type':'application/json'
+        },
+      });
+      const data = await res.json()
+      console.log(data)
+
+      if(data.success === false){
+        navigate('/profile')
+      }
+      setLoggedIn(false)
+      setUserInfo({})
+      navigate('/signin')
+
+    }catch(error){
+      console.log(error)
+    }
+
+  }
+
+
   return (
     <header className="flex h-16 w-full bg-gray-200 justify-between items-center px-4 sm:px-6">
       {/* Logo */}
@@ -34,11 +67,9 @@ const Header = () => {
           <Link className="py-2 px-4 sm:px-0 sm:py-0" to="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
           <Link className="py-2 px-4 sm:px-0 sm:py-0" to="/about" onClick={() => setIsMenuOpen(false)}>About</Link>
           <Link className="py-2 px-4 sm:px-0 sm:py-0" to="/profile" onClick={() => setIsMenuOpen(false)}>Profile</Link>
-          {console.log(loggedIn)}
           {loggedIn === true?
-          
            <Link className="py-2 px-4 sm:px-0 sm:py-0" to="" onClick={() => setIsMenuOpen(false)}>
-           <button className="bg-red-800 drop-shadow-xl cursor-pointer px-3 py-1 rounded-sm text-gray-100 font-medium">
+           <button className="bg-red-800 drop-shadow-xl cursor-pointer px-3 py-1 rounded-sm text-gray-100 font-medium" onClick={handleLogout}>
              Logout
            </button>
            </Link>  
