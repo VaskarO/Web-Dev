@@ -48,8 +48,8 @@ const Signin = () => {
     <div className='flex flex-col mx-auto my-auto pt-15 justify-center min-h-screen bg-slate-300 items-center'>
     <h1 className='pb-10 text-3xl center text font-bold ' >Sign In</h1>
     <form onSubmit={handleSubmit} action="" className=' w-1/3 flex flex-col'>
-      <input onChange={handleChange} type="text " id= "email" className ="mb-6 rounded-md font-normal  px-3 py-2 " placeholder='Email' />
-      <input onChange={handleChange} type="text " id='password' className ="mb-6 rounded-md font-normal  px-3 py-2 " placeholder='Password' />
+      <input onChange={handleChange} required type="text " id= "email" className ="mb-6 rounded-md font-normal  px-3 py-2 " placeholder='Email' />
+      <input onChange={handleChange} required type="text " id='password' className ="mb-6 rounded-md font-normal  px-3 py-2 " placeholder='Password' />
       {/* <input onChange={handleChange} type="text " className ="mb-6 rx rounded-md font-normal  px-3 py-2 " placeholder='Confirm password' /> */}
       <button className='hover:bg-blue-900 w-full bg-blue-950 text-white py-3 font-bold rounded-md'> Signin now</button>
     </form>

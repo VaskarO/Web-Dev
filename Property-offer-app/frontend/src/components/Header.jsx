@@ -1,16 +1,25 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSearch, FaBars, FaTimes } from 'react-icons/fa';
 import UserContext from '../contexts/UserContext';
 
 const Header = () => {
   const navigate = useNavigate()
+  useEffect(()=>{
+
+  }, [])
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {loggedIn} = useContext(UserContext)
   const {setLoggedIn} = useContext(UserContext)
   const {setUserInfo} = useContext(UserContext)
-  const [logoutMessage, setLogoutMessage] = useState('')
+
+  useEffect(()=>{
+    fetch(`/api/auth/getUser`)
+    .then(response => response.json())
+    .then(data =>{(setUserInfo(data),setLoggedIn(true))} )
+    .catch(error=>console.log(error))
+  }, [])
 
   const handleLogout = async (e)=>  {
     e.preventDefault();

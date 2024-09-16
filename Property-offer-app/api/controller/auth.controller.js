@@ -25,6 +25,9 @@ export const signup= async (req, res, next)=>{
 
 export const signin = async (req, res, next)=>{
     const { email, password } = req.body;
+    if(!email || !password){
+        res.status(400).json("All field required!!")
+    } 
     try{
         console.log(req.body)
         const currentUser = await User.findOne({email})
@@ -63,6 +66,15 @@ export const logout = async(req, res,next)=>{
         handleError(404, err.message)
         next()
     }
+}
 
- 
+export const getUserInfo =async (req,res,next) =>{
+    try{
+        const currentUser =await User.findById({_id: req.userId})
+        // console.log(currentUser)
+        const {password, ...userInfo} = currentUser._doc
+        res.status(200).json(userInfo)
+    }catch(err){
+        return next(handleError(500, 'Internal server error'))
+    }
 }
