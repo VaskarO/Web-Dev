@@ -1,11 +1,17 @@
-import React , {useState} from 'react'
-import {useNavigate} from 'react-router-dom'
+import React , {useContext, useState} from 'react'
+import {useNavigate, Link} from 'react-router-dom'
+import UserContext from '../contexts/UserContext'
 const Signup = () => {
   const [signUpData, setSignUpData] = useState({})
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
-  
+  const {loggedIn} = useContext(UserContext)
   const navigate = useNavigate()
+
+  if(loggedIn){
+    navigate('/advertisements?alreadyloggedin')
+  }
+
 
   const handleChange =(e)=>{
     setSignUpData({
@@ -54,6 +60,7 @@ const Signup = () => {
         {/* <input onChange={handleChange} type="text " className ="mb-6 rx rounded-md font-normal  px-3 py-2 " placeholder='Confirm password' /> */}
         <button className='hover:bg-blue-900 w-full bg-blue-950 text-white py-3 font-bold rounded-md'> Signup now</button>
       </form>
+      <p>Already have an account? <Link className='text-blue-600' to={'/signin'}>Sign in here.</Link></p>
     </div>
   )
 }

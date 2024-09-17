@@ -5,9 +5,6 @@ import UserContext from '../contexts/UserContext';
 
 const Header = () => {
   const navigate = useNavigate()
-  useEffect(()=>{
-
-  }, [])
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {loggedIn} = useContext(UserContext)
@@ -17,9 +14,9 @@ const Header = () => {
   useEffect(()=>{
     fetch(`/api/auth/getUser`)
     .then(response => response.json())
-    .then(data =>{(setUserInfo(data),setLoggedIn(true))} )
-    .catch(error=>console.log(error))
-  }, [])
+    .then(data =>{data._id?(setUserInfo(data), setLoggedIn(true)):""} )
+    .catch(error=>console.log(error.message))
+  }, [loggedIn])
 
   const handleLogout = async (e)=>  {
     e.preventDefault();

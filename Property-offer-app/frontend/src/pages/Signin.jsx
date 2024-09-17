@@ -1,14 +1,19 @@
 import React, {useContext, useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import UserContext from '../contexts/UserContext'
 
 const Signin = () => {
+  const {loggedIn} = useContext(UserContext)
   const {setLoggedIn} = useContext(UserContext)
   const {setUserInfo} = useContext(UserContext)
 
   const navigate = useNavigate()
   const [signinData, setSigninData] = useState({})
   
+  if(loggedIn){
+    navigate('/advertisements?alreadyloggedin')
+  }
+
   const handleChange = (e)=>{
     return setSigninData({
       ...signinData,
@@ -53,6 +58,8 @@ const Signin = () => {
       {/* <input onChange={handleChange} type="text " className ="mb-6 rx rounded-md font-normal  px-3 py-2 " placeholder='Confirm password' /> */}
       <button className='hover:bg-blue-900 w-full bg-blue-950 text-white py-3 font-bold rounded-md'> Signin now</button>
     </form>
+    <p>Don't have an account? <Link className='text-blue-600' to={'/signup'}>Sign up here.</Link></p>
+
   </div>
   )
 }
