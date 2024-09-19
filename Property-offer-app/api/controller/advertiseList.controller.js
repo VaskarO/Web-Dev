@@ -1,11 +1,11 @@
-import { AdveriseList } from "../models/Advertise.model.js"
+import { AdvertiseList } from "../models/Advertise.model.js"
 import { handleError } from "../utils/handleError.js";
 
 export const createAdvertise = async(req, res, next)=>{
     const userId = req.userId
     const {advertiseType,title,title1,description,price,numberOfRooms,floorNumber,haveBathroom,availableFrom,petAllowed,haveBalcony} = req.body;
 
-    const newAdvertiseList = new AdveriseList({advertiseType,title,title1,description,price,numberOfRooms,floorNumber,haveBathroom,availableFrom,petAllowed,haveBalcony, createdBy:userId})
+    const newAdvertiseList = new AdvertiseList({advertiseType,title,title1,description,price,numberOfRooms,floorNumber,haveBathroom,availableFrom,petAllowed,haveBalcony, createdBy:userId})
     try{
         await newAdvertiseList.save()
         res.status(200).json({'message':'Advertisement created!!',"success":true, "AdvertisementId": newAdvertiseList._id})
@@ -19,7 +19,7 @@ export const createAdvertise = async(req, res, next)=>{
 export const updateAdvertisement = async (req, res, next)=>{
     const currentUserId = req.userId;
 
-    const getAdvertiseById = await AdveriseList.findById({_id:req.params.id})
+    const getAdvertiseById = await AdvertiseList.findById({_id:req.params.id})
     // console.log(getAdvertiseById.createdBy)
     if(currentUserId !== getAdvertiseById.createdBy) {return next(handleError(403, 'Unauthorized request!'))}
 
@@ -48,7 +48,7 @@ export const updateAdvertisement = async (req, res, next)=>{
 
 export const getAllAdvertisements = async (req, res, next)=>{
     try{
-        const getAllAdveritisements = await AdveriseList.find()
+        const getAllAdveritisements = await AdvertiseList.find()
             // res.status(200).json({'message':"updated"})
             res.status(200).json({'success':'true', 'advertisements':getAllAdveritisements})
             
@@ -59,7 +59,7 @@ export const getAllAdvertisements = async (req, res, next)=>{
 
 export const deleteAdvertisement = async(req, res, next)=>{
     try{
-        const deleteAdvertise = await AdveriseList.findByIdAndDelete({_id:req.params.id})
+        const deleteAdvertise = await AdvertiseList.findByIdAndDelete({_id:req.params.id})
         if(deleteAdvertise){
             res.status(200).json({'success':'true', 'message': `Advertisement with id ${req.params.id } is deleted.`} )
         }
@@ -72,7 +72,7 @@ export const getAdvertisementsByUser = async(req, res, next)=>{
     const userId = req.userId
     console.log(userId)
     try{
-        const useAdvertiseList = await AdveriseList.find({createdBy:userId});
+        const useAdvertiseList = await AdvertiseList.find({createdBy:userId});
         if(useAdvertiseList){
             res.status(200).json({Advertisements: useAdvertiseList})
         }
@@ -85,7 +85,7 @@ export const getAdvertisementsByUser = async(req, res, next)=>{
 export const getAdvertisementsById = async(req, res, next)=>{
     console.log(req.params.id)
     try{
-        const advertiseemnt = await AdveriseList.findById({_id:req.params.id});
+        const advertiseemnt = await AdvertiseList.findById({_id:req.params.id});
         if(advertiseemnt){
             res.status(200).json({advertiseemnt: advertiseemnt})
         }
