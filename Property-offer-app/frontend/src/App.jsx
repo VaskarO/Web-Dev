@@ -8,6 +8,7 @@ import Header from './components/Header'
 import Advertisements from './pages/Advertisements'
 import AdDetail from './pages/AdDetail'
 import UserContextProvider from './contexts/UserContextProvider'
+import Search from './pages/Search'
 const App = () => {
   return (
     <UserContextProvider>
@@ -21,6 +22,7 @@ const App = () => {
         <Route  path='/signin' element= {<Signin/>}/>
         <Route path = '/advertisements' element = {<Advertisements/>}/>
         <Route path = '/adDetails/:id' element = {<AdDetail/>}/>
+        <Route path = '/search' element = {<Search/>}/>
       </Routes>
     </BrowserRouter>
     </UserContextProvider>
