@@ -22,7 +22,7 @@ const App = () => {
         <Route  path='/signin' element= {<Signin/>}/>
         <Route path = '/advertisements' element = {<Advertisements/>}/>
         <Route path = '/adDetails/:id' element = {<AdDetail/>}/>
-        <Route path = '/search' element = {<Search/>}/>
+        <Route path = '/search/:query' element = {<Search/>}/>
       </Routes>
     </BrowserRouter>
     </UserContextProvider>
