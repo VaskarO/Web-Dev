@@ -23,6 +23,12 @@ export const searchAdvertisement = async (req, res)=>{
             ],
             }).limit(limit).skip(skip)
         
+            const dataCount = await AdvertiseList.find({
+                $or: [
+                    { title: { $regex: queryRegx } },
+                    { description: { $regex: queryRegx } },
+                ],
+                }).countDocuments()
         if(req.query.page){
             const advertiseCount = await AdvertiseList.countDocuments();
             if(skip>=advertiseCount){
@@ -37,7 +43,7 @@ export const searchAdvertisement = async (req, res)=>{
         if(!results){
             res.status(500).json({message:"Error on searching the data."})
         }
-        res.status(200).json({searchList: results})
+        res.status(200).json({searchList: results, dataCount})
     }catch(err){
         handleError(403, err.message)
     }
