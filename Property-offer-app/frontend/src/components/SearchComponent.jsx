@@ -5,7 +5,7 @@ import thumbnail from '../assets/images/300x200.png'
 const SearchComponent = ({item}) => {
   
   return (
-    <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-4 bg-slate-200 p-4 shadow-md rounded-lg">
+    <div className="min-w-64 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-4 bg-slate-200 p-4 shadow-md rounded-lg">
   <img className="rounded-lg shadow-sm w-full h-40 object-cover" src={thumbnail} alt="" />
   
   <h2 className="text-lg font-semibold pt-3">{item.title}</h2>

@@ -35,8 +35,8 @@ const Search = () => {
   const handlePageChange =(e)=>{
      setCurrentPage(e);
   }
-  const handleLimit = (n)=>{
-    setLimit(n)
+  const handleLimit = (e)=>{
+    setLimit(e.target.value)
   }
 
   return (
@@ -44,17 +44,17 @@ const Search = () => {
     <SearchBar/>
     <div className='bg-blue-300 px-3 py-2 mt-1'>
       <label htmlFor="items">Advertise per page:</label>
-      <select name="" id="">
-        <option onClick={()=>handleLimit(4)} value={limit}>4</option>
-        <option onClick={()=>handleLimit(8)} value={limit}>8</option>
-        <option onClick={()=>handleLimit(16)} value={limit}>16</option>
+      <select onChange={handleLimit} value={limit} name="" id="">
+        <option value={4}>4</option>
+        <option value={8}>8</option>
+        <option value={16}>16</option>
       </select>
     </div>
     {console.log(limit)}
     <div className='flex flex-col items-center text-center justify-center mx-auto'>
         <div className='text-3xl text-center mt-10 font-semibold text-blue-900'>Your search result for <i className='text-blue-600'>"{query}"</i></div>
         <div className='text-xl text-center mt-5 font-semibold text-blue-900'>Matching results: <i className='text-blue-800'>"{totalData}"</i></div>
-        <div className='flex gap-5 items-center mx-auto justify-around mt-10'>
+        <div className='flex flex-wrap gap-5 items-center mx-auto justify-around mt-10'>
         {advertise?.map((item, key)=>(
             <SearchComponent key={item._id} item= {item}/>
           ))}
