@@ -6,14 +6,12 @@ import Pagination from '../components/Pagination'
 const Search = () => {
 
   const {query} = useParams()
-  const [searchParams] = useSearchParams()
   const [advertise, setAdvertise] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
-  const [totalPage, setTotalPage] = useState(1)
   const [totalData, setTotalData] = useState(0)
+  const [limit, setLimit] = useState(4)
 
 
-  const limit = 4
   const pages =Math.ceil(totalData/limit)
   // console.log(id)
   useEffect(()=>{
@@ -21,7 +19,7 @@ const Search = () => {
     .then(response => response.json())
     .then(data =>(setAdvertise(data.searchList), setTotalData(data.dataCount)))
     .catch(error=>console.log(error))
-  }, [query,currentPage])
+  }, [query,currentPage, limit])
   console.log(totalData)
   console.log(currentPage)
   if(advertise === 'No search result'){
@@ -37,13 +35,25 @@ const Search = () => {
   const handlePageChange =(e)=>{
      setCurrentPage(e);
   }
+  const handleLimit = (n)=>{
+    setLimit(n)
+  }
 
   return (
     <div className='flex flex-col  mt-10 items-center justify-center mx-auto'>
     <SearchBar/>
-
+    <div className='bg-blue-300 px-3 py-2 mt-1'>
+      <label htmlFor="items">Advertise per page:</label>
+      <select name="" id="">
+        <option onClick={()=>handleLimit(4)} value={limit}>4</option>
+        <option onClick={()=>handleLimit(8)} value={limit}>8</option>
+        <option onClick={()=>handleLimit(16)} value={limit}>16</option>
+      </select>
+    </div>
+    {console.log(limit)}
     <div className='flex flex-col items-center text-center justify-center mx-auto'>
         <div className='text-3xl text-center mt-10 font-semibold text-blue-900'>Your search result for <i className='text-blue-600'>"{query}"</i></div>
+        <div className='text-xl text-center mt-5 font-semibold text-blue-900'>Matching results: <i className='text-blue-800'>"{totalData}"</i></div>
         <div className='flex gap-5 items-center mx-auto justify-around mt-10'>
         {advertise?.map((item, key)=>(
             <SearchComponent key={item._id} item= {item}/>
