@@ -26,8 +26,8 @@ const advertiseSchema = new mongoose.Schema({
         type:Number,
         required:false,
     },
-    haveBathroom:{
-        type:Boolean,
+    numberOfBathrooms:{
+        type:Number,
         required:false,
     },
     availableFrom:{
