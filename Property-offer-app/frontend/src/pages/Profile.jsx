@@ -7,6 +7,11 @@ const Profile = () => {
     e.preventDefault()
     navigate('/createAdvertisement')
   }
+
+  const handleManage =(e)=>{
+    e.preventDefault()
+    navigate('/yourAdvertisements')
+  }
   return (
     <div className="flex flex-wrap w-4/5 mx-auto">
   <div className="w-full md:w-1/2 bg-slate-300 min-h-screen">
@@ -41,7 +46,7 @@ const Profile = () => {
     <button onClick={handleCreate} className="px-8 py-3 bg-green-800 text-white shadow-lg w-full md:w-1/2 mt-5 font-semibold hover:bg-green-600">
       Create Advertisement
     </button>
-    <button className="px-8 py-3 bg-green-800 text-white shadow-lg w-full md:w-1/2 mt-5 font-semibold hover:bg-green-700">
+    <button onClick={handleManage} className="px-8 py-3 bg-green-800 text-white shadow-lg w-full md:w-1/2 mt-5 font-semibold hover:bg-green-700">
       Manage Advertisements
     </button>
     <button className="px-8 py-3 bg-green-800 text-white shadow-lg w-full md:w-1/2 mt-5 font-semibold hover:bg-green-700">

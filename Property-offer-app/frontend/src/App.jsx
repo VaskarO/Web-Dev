@@ -10,6 +10,7 @@ import AdDetail from './pages/AdDetail'
 import UserContextProvider from './contexts/UserContextProvider'
 import Search from './pages/Search'
 import CreateAdvertisement from './pages/CreateAdvertisement'
+import AdvertisementsByUser from './pages/AdvertisementsByUser'
 const App = () => {
   return (
     <UserContextProvider>
@@ -25,6 +26,7 @@ const App = () => {
         <Route path = '/adDetails/:id' element = {<AdDetail/>}/>
         <Route path = '/search/:query' element = {<Search/>}/>
         <Route path = '/createAdvertisement' element = {<CreateAdvertisement/>}/>
+        <Route path = '/yourAdvertisements' element = {<AdvertisementsByUser/>}/>
       </Routes>
     </BrowserRouter>
     </UserContextProvider>
