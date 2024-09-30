@@ -35,7 +35,7 @@ const AdvertisementCard = ({item}) => {
   </Link>
   {loggedIn && userId === item.createdBy && (
   <>
-        <Link to={`/adDetails/${item._id}`}>
+        <Link to={`/adUpdate/${item._id}`}>
     <button className="bg-green-900 text-white w-full mt-3 py-2 rounded-md font-semibold hover:bg-green-800 hover:text-gray-200">
       Edit Advertisement
     </button>
