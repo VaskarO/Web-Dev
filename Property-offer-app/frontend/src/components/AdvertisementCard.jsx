@@ -8,13 +8,30 @@ const AdvertisementCard = ({item}) => {
   const {setLoggedIn} = useContext(UserContext)
   const {setUserInfo} = useContext(UserContext)
   const [userId, setUserId] = useState(null)
+  const [adId, setAdId] = useState('')
   useEffect(()=>{
     fetch(`/api/auth/getUser`)
     .then(response => response.json())
-    .then(data =>{data._id?(setUserInfo(data), setLoggedIn(true)):"", setUserId(data._id)} )
+    .then(data =>{data._id?(setUserInfo(data),setAdId(data._id), setLoggedIn(true)):"", setUserId(data._id)} )
     .catch(error=>console.log(error.message))
   }, [loggedIn])
 
+  const handleRemove = async ()=>{
+    try{
+    const res = await fetch(`/api/advertiseList/delete/${adId}`, {
+      method:'GET'},).then(data=>data.json())
+
+    if(res.success ===false){
+      alert('Error on deleting advertisement'. res.message)
+    }      
+    if(res.success === true){
+      navigate(`/advertisements}`)
+      alert('Advertisement deleted successfully.')
+    }
+  }catch(err){
+    console.log(err)
+  }
+}
 
   return (
 <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 mb-4 bg-slate-200 p-4 shadow-md rounded-lg">
@@ -40,7 +57,7 @@ const AdvertisementCard = ({item}) => {
       Edit Advertisement
     </button>
   </Link>
-    <Link to={`/adDetails/${item._id}`}>
+    <Link onClick={handleRemove}>
     <button className="bg-red-900 text-white w-full mt-3 py-2 rounded-md font-semibold hover:bg-red-800 hover:text-gray-200">
       Remove Advertisement
     </button>

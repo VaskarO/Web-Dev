@@ -3,9 +3,9 @@ import { handleError } from "../utils/handleError.js";
 
 export const createAdvertise = async(req, res, next)=>{
     const userId = req.userId
-    const {advertiseType,title,title1,description,price,numberOfRooms,floorNumber,haveBathroom,availableFrom,petAllowed,haveBalcony} = req.body;
+    const {advertiseType,title,title1,description,price,numberOfRooms,floorNumber,numberOfBathrooms,availableFrom,petAllowed,haveBalcony} = req.body;
 
-    const newAdvertiseList = new AdvertiseList({advertiseType,title,title1,description,price,numberOfRooms,floorNumber,haveBathroom,availableFrom,petAllowed,haveBalcony, createdBy:userId})
+    const newAdvertiseList = new AdvertiseList({advertiseType,title,title1,description,price,numberOfRooms,floorNumber,numberOfBathrooms,availableFrom,petAllowed,haveBalcony, createdBy:userId})
     try{
         await newAdvertiseList.save()
         res.status(200).json({'message':'Advertisement created!!',"success":true, "AdvertisementId": newAdvertiseList._id})
@@ -32,7 +32,7 @@ export const updateAdvertisement = async (req, res, next)=>{
                 price:req.body.price,
                 numberOfRooms:req.body.numberOfRooms,
                 floorNumber:req.body.floorNumber,
-                haveBathroom:req.body.haveBathroom,
+                numberOfBathrooms:req.body.numberOfBathrooms,
                 availableFrom:req.body.availableFrom,
                 petAllowed: req.body.petAllowed,
                 haveBalcony:req.body.haveBalcony,
