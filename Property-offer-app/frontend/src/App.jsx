@@ -12,6 +12,7 @@ import Search from './pages/Search'
 import CreateAdvertisement from './pages/CreateAdvertisement'
 import AdvertisementsByUser from './pages/AdvertisementsByUser'
 import UpdateAdvertisement from './pages/UpdateAdvertisement'
+import CreateAppointment from './pages/CreateAppointment'
 const App = () => {
   return (
     <UserContextProvider>
@@ -29,6 +30,7 @@ const App = () => {
         <Route path = '/createAdvertisement' element = {<CreateAdvertisement/>}/>
         <Route path = '/adUpdate/:id' element = {<UpdateAdvertisement/>}/>
         <Route path = '/yourAdvertisements' element = {<AdvertisementsByUser/>}/>
+        <Route path='/createAppointment' element = {<CreateAppointment/>}/>
       </Routes>
     </BrowserRouter>
     </UserContextProvider>
