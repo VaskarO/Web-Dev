@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 const CreateAppointment = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState(false); // For loading spinner
+  const [loading, setLoading] = useState(false); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
