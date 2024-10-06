@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { isContext } from "vm";
 
 type ConnectionObject = {
     isConnected?:number
