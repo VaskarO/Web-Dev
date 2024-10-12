@@ -10,4 +10,6 @@ def post_list(request):
     })
 
 def post_page(request, post_slug):
-    return HttpResponse(post_slug)
+    post = Post.objects.get(slug= post_slug)
+    return render(request, 'posts/post_page.html',{"post":post})
+    # return HttpResponse(post_slug)
