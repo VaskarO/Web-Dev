@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    New Post
+{% endblock %}
+
+{% block content %}
+
+<div class="bg-slate-300 w-3/4 mx-auto p-10 h-screen">
+    <h2 class="text-cyan-700 font-semibold text-2xl  pb-10" >Create Post</h2>
+    <ul>
+        {{new_post}}
+<br>
+        {{ user}}
+    </ul>
+</div>
+{% endblock %}

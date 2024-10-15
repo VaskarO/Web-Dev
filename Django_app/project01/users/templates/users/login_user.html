@@ -11,6 +11,9 @@
 
     <form class="mx-20" action="/users/login/" method="POST">
       {% csrf_token %}
+      {% if request.GET.next %}
+      <input type="hidden" name="next" value="{{request.GET.next}}" />
+      {% endif %}
         {{form}}
         <button class="bg-emerald-800 text-white px-6 py-2 font-semibold my-10">Login</button>
     </form>
