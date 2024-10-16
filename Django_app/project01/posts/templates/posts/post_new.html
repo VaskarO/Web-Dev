@@ -9,9 +9,12 @@
 <div class="bg-slate-300 w-3/4 mx-auto p-10 h-screen">
     <h2 class="text-cyan-700 font-semibold text-2xl  pb-10" >Create Post</h2>
     <ul>
-        {{new_post}}
-<br>
-        {{ user}}
+        <h1>Create Post</h1>
+        <form action = "{% url 'posts:new' %}" method = "POST" enctype = "multipart/form-data">
+            {% csrf_token %}
+            {{form}}
+            <button type="submit">Create Now</button>
+        </form>
     </ul>
 </div>
 {% endblock %}
