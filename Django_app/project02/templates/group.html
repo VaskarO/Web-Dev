@@ -7,5 +7,11 @@
 </head>
 <body>
     <h1>Group page</h1>
+    <br>
+
+    {% for group in groups %}
+
+    <p>Group ID: <a href="/group/{{group.id}}">{{group.id}}</a> , Name: {{group.name}}</p>
+    {% endfor %}
 </body>
 </html>
