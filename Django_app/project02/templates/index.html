@@ -12,8 +12,16 @@
     </title>
 </head>
 <body>
+{% block content  %}
+    <!-- {% include 'nav.html' %} -->
+    <h1>Home Pages</h1>
+    
+    {% for group in groups %}
 
-    {% include 'nav.html' %}
-    <h1>Home Page</h1>
+    <p>Group ID: <a href="/group/{{group.id}}">{{group.id}}</a> , Name: {{group.name}}</p>
+    {% endfor %}
+
+
+    {% endblock %}
 </body>
 </html>
