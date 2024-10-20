@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Group
+from .forms import GroupForm
 # Create your views here.
 # groups = [
 #     {"id":1, "name": 'group1', "desc":"group1 desc"},
@@ -23,3 +24,6 @@ def group(request, key):
 # def group_by_id(request, key):
 #     return HttpResponse(key)
 #     # return render(request, 'group.html')
+
+def createGroup(request):
+    return render(request, 'group_form.html', {'form':GroupForm})
