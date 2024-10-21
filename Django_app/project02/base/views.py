@@ -33,3 +33,13 @@ def createGroup(request):
             form.save()
             return redirect('base:home')
     return render(request, 'group_form.html', {'form':GroupForm})
+
+def updateGroup(request, key):
+    group = Group.objects.get(id = key)
+    form = GroupForm(instance=group)
+    if request.method == "POST":
+        form = GroupForm(request.POST, instance=group)
+        if form.is_valid():
+            form.save()
+            return redirect('base:home')
+    return render(request, 'base/group_form.html', {'form': form})
