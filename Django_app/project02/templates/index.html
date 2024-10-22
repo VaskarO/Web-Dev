@@ -15,11 +15,12 @@
 {% block content  %}
     <!-- {% include 'nav.html' %} -->
     <h1>Home Pages</h1>
-    <a href="/group/update-group/{{group.id}}">Create group</a>
+    <a href="group/create-group/">Create group</a>
     {% for group in groups %}
 
-    <p>Group ID: <a href="/group/{{group.id}}">{{group.id}}</a> , Name: {{group.name}}</p>
-    <a href="">Update</a>
+    <p>Group ID: <a href="/group/{{group.id}}">{{group.id}}</a> , Name: {{group.name}}, Description: {{group.description}}</p>
+    <a href="group/update-group/{{group.id}}">Update</a>
+    <a href="group/delete-group/{{group.id}}">Delete</a>
     {% endfor %}
 
 

@@ -42,4 +42,11 @@ def updateGroup(request, key):
         if form.is_valid():
             form.save()
             return redirect('base:home')
-    return render(request, 'base/group_form.html', {'form': form})
+    return render(request, 'group_form.html', {'form': form})
+
+def deleteGroup(request, key):
+    group = Group.objects.get(id = key)
+    if request.method =="POST":
+        group.delete()
+        return redirect('base:home')
+    return render(request,'remove.html', {'item':group})

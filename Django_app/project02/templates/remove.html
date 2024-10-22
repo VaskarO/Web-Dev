@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+    {% block title %}
+    Remove
+    {% endblock %}
+
+    {% block content  %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>Are you sure you want to delete <b>{{item}}</b> ??</p>
+
+        <a href="{{request.META.HTTP.REFERER}}">GO BACK</a>
+        <input type="submit" value="Remove now">
+    </form>
+
+    {% endblock %}
