@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Group
+from .models import Group, Topic
 from .forms import GroupForm
 # Create your views here.
 # groups = [
@@ -11,8 +11,11 @@ from .forms import GroupForm
 # ]
 
 def home(request):
+    query = request.GET.get('query') if request.GET.get('query') != None else ''
+    groups = Group.objects.filter(topic__name__icontains = query)
+    topics = Topic.objects.all()
     groups = Group.objects.all()
-    return render(request, 'index.html', {"groups":groups})
+    return render(request, 'index.html', {"groups":groups, 'topics':topics})
 
 def group(request, key):
     group = Group.objects.get(id=key)
