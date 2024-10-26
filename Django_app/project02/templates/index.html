@@ -1,28 +1,37 @@
 {% extends 'layout.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
         {% block title %}
         Homepage
         {% endblock %}
-    </title>
-</head>
-<body>
+
 {% block content  %}
-    <!-- {% include 'nav.html' %} -->
-    <h1>Home Pages</h1>
-    <a href="group/create-group/">Create group</a>
-    {% for group in groups %}
-
-    <p>Group ID: <a href="/group/{{group.id}}">{{group.id}}</a> , Name: {{group.name}}, Description: {{group.description}}</p>
-    <a href="group/update-group/{{group.id}}">Update</a>
-    <a href="group/delete-group/{{group.id}}">Delete</a>
-    {% endfor %}
-
+<style>
+    .home-content{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+</style>
+<div class="home-content">
+    <div class="sidebar">
+        <h2>Topics avaiable:</h2>
+        <hr>
+        {% for topic in topics%}
+        <div><a href="{% url 'home' %}?query ={{topic.name}}">{{topic.name}}</a></div>
+        {% endfor %}
+    </div>
+   <div>
+         <!-- {% include 'nav.html' %} -->
+         <h1>Home Pages</h1>
+         <a href="group/create-group/">Create group</a>
+         {% for group in groups %}
+     
+         <p>Group ID: <a href="/group/{{group.id}}">{{group.id}}</a> , Name: {{group.name}}, Description: {{group.description}}</p>
+         <a href="group/update-group/{{group.id}}">Update</a>
+         <a href="group/delete-group/{{group.id}}">Delete</a>
+         {% endfor %}
+     
+   </div>
+</div>
 
     {% endblock %}
 </body>
