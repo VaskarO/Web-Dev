@@ -3,6 +3,7 @@ from . import views
 app_name = 'base'
 urlpatterns = [
     path('', views.home, name="home"),
+    path('group/login/', views.loginPage, name="login"),
     # path('group/', views.group, name= "group"), 
     path('group/<str:key>', views.group, name= "group"),
     path('group/update-group/<str:key>', views.updateGroup, name= "update"),

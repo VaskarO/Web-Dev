@@ -3,6 +3,7 @@
         {% block title %}
         Homepage
         {% endblock %}
+{% include 'nav.html' %}
 
 {% block content  %}
 <style>
@@ -15,8 +16,11 @@
     <div class="sidebar">
         <h2>Topics avaiable:</h2>
         <hr>
+        <div>
+            <a href="{% url 'base:home' %}">All</a>
+        </div>
         {% for topic in topics%}
-        <div><a href="{% url 'home' %}?query ={{topic.name}}">{{topic.name}}</a></div>
+        <div><a href="{% url 'base:home' %}?query={{topic.name}}">{{topic.name}}</a></div>
         {% endfor %}
     </div>
    <div>

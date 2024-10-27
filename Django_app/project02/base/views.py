@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 from .models import Group, Topic
 from .forms import GroupForm
 # Create your views here.
@@ -10,11 +12,29 @@ from .forms import GroupForm
 #     {"id":4, "name": 'group4', "desc":"group4 desc"},
 # ]
 
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        try:
+            user = User.objects.get(username= username)
+        except:
+            return render(request, 'auth.html?error_login')
+        
+        user = authenticate(request, username= username, password= password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('base:home')
+
+    return render(request, 'auth.html',{})
+
 def home(request):
     query = request.GET.get('query') if request.GET.get('query') != None else ''
+    print(query)
     groups = Group.objects.filter(topic__name__icontains = query)
     topics = Topic.objects.all()
-    groups = Group.objects.all()
+    # groups = Group.objects.all()
     return render(request, 'index.html', {"groups":groups, 'topics':topics})
 
 def group(request, key):
