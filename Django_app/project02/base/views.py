@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .models import Group, Topic
 from .forms import GroupForm
@@ -29,6 +30,10 @@ def loginPage(request):
 
     return render(request, 'auth.html',{})
 
+def logoutUser(request):
+    logout(request)
+    return redirect('base:home')
+
 def home(request):
     query = request.GET.get('query') if request.GET.get('query') != None else ''
     print(query)
@@ -48,6 +53,7 @@ def group(request, key):
 #     return HttpResponse(key)
 #     # return render(request, 'group.html')
 
+@login_required(login_url='login')
 def createGroup(request):
     form = GroupForm()
     if request.method =='POST':
