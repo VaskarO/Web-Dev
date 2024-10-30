@@ -4,6 +4,7 @@ app_name = 'base'
 urlpatterns = [
     path('', views.home, name="home"),
     path('group/login/', views.loginPage, name="login"),
+    path('group/register/', views.registerUser, name="register"),
     path('group/logout/', views.logoutUser, name="logout"),
     # path('group/', views.group, name= "group"), 
     path('group/<str:key>', views.group, name= "group"),

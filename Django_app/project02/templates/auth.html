@@ -1,14 +1,29 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <div>
-        <form action="" method="post">
-            {% csrf_token %}
-            <label for="">Username</label>
-            <input type="text" value="username" placeholder="Username">
-            <input type="password" value="password" placeholder="Placeholder">
-            <input type="submit" name="" id="" value="login">
-        </form>
+{% if page == 'login' %}
+<div>
+    <form action="{% url 'base:login' %}" method="post">
+        {% csrf_token %}
+        <label for="">Username</label>
+        <input type="text" value="username" name="username" placeholder="Username">
+        <input type="password" value="password" name="password" placeholder="Placeholder">
+        <input type="submit" id="" value="login">
+    </form>
 
-    </div>
+</div>
+
+{% else %}
+<div>
+    <form action="{% url 'base:register' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" id="" value="Register">
+    </form>
+
+</div>
+
+{% endif %}
+
+
 {% endblock %}
