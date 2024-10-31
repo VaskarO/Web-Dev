@@ -61,7 +61,8 @@ def home(request):
 
 def group(request, key):
     group = Group.objects.get(id=key)
-    return render(request, 'group.html', {"group":group})
+    messages = group.messages_set.all().order_by('-created')
+    return render(request, 'group.html', {"group":group, 'messages':messages})
     # for group in groups:
     #     if group['id'] == int(key):
     #         return render(request, 'group.html', {"group":group})
