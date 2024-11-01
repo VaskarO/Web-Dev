@@ -62,14 +62,14 @@ def home(request):
 def group(request, key):
     group = Group.objects.get(id=key)
     messages = group.messages_set.all().order_by('-created')
-
+    participants = group.participants.all()
     if(request.method == 'POST'):
         message= Messages.objects.create(
             user= request.user, group = group, body= request.POST.get('body')
         )
         return redirect('base:group', key=group.id)
 
-    return render(request, 'group.html', {"group":group, 'messages':messages})
+    return render(request, 'group.html', {"group":group, 'messages':messages,'participants':participants})
     # for group in groups:
     #     if group['id'] == int(key):
     #         return render(request, 'group.html', {"group":group})

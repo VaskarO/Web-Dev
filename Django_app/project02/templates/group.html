@@ -6,29 +6,46 @@
     <title>Group</title>
 </head>
 <body>
-    <h1>Group page</h1>
-    <br>
-    <h1> {{group.name}}</h1>
-   <p>{{group.description}}</p>
-<hr>
-   <div>
-    <h2>Conversations</h2>
-    {% for message in messages %}
-    <div>
-        <p> <b> {{message.user}}</b>  <span>{{message.created|timesince}}</span></p>
-      
-        <p>{{message.body}}</p>
-
+    <style>
+        .group-container{
+            display: grid;
+            grid-template-columns:3fr 1fr;
+        }
+    </style>
+    <div class="group-container"> 
+        <div>
+            <h1>Group page</h1>
+            <br>
+            <h1> {{group.name}}</h1>
+        <p>{{group.description}}</p>
+        <hr>
+        <div>
+            <h2>Conversations</h2>
+            {% for message in messages %}
+            <div>
+                <p> <b> {{message.user}}</b>  <span>{{message.created|timesince}}</span></p>
+            
+                <p>{{message.body}}</p>
+    
+            </div>
+            {% endfor %}
+        </div>
+        {% if request.user.is_authenticated %}
+        <div class="comment-form">
+            <form action="" method = "post">
+            {% csrf_token %}
+            <input type="text" name = 'body' placeholder="Write your message here..">
+        </form>
+        </div>
+        {% endif %}
+        </div>
+        <div>
+            <h2>Participants:</h2>
+            {% for participant in participants %}
+               <p> {{participant.username}}</p>
+            {% endfor %}
+        </div>
     </div>
-    {% endfor %}
-   </div>
-   {% if request.user.is_authenticated %}
-   <div class="comment-form">
-    <form action="" method = "post">
-    {% csrf_token %}
-    <input type="text" name = 'body' placeholder="Write your message here..">
-</form>
-   </div>
-   {% endif %}
+
 </body>
 </html>
