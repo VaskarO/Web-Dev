@@ -67,6 +67,7 @@ def group(request, key):
         message= Messages.objects.create(
             user= request.user, group = group, body= request.POST.get('body')
         )
+        group.participants.add(request.user)
         return redirect('base:group', key=group.id)
 
     return render(request, 'group.html', {"group":group, 'messages':messages,'participants':participants})
@@ -98,9 +99,26 @@ def updateGroup(request, key):
             return redirect('base:home')
     return render(request, 'group_form.html', {'form': form})
 
+@login_required(login_url='base:login')
 def deleteGroup(request, key):
     group = Group.objects.get(id = key)
+
+    if request.user != group.user:
+        return redirect('base:home')
+
     if request.method =="POST":
         group.delete()
         return redirect('base:home')
     return render(request,'remove.html', {'item':group})
+
+@login_required(login_url='base:login')
+def deleteMessage(request, key):
+    message = Messages.objects.get(id = key)
+
+    if request.user != message.user:
+        return redirect('base:home')
+
+    if request.method =="POST":
+        message.delete()
+        return redirect('base:home')
+    return render(request,'remove.html', {'item':message})

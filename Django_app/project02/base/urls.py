@@ -11,4 +11,5 @@ urlpatterns = [
     path('group/update-group/<str:key>', views.updateGroup, name= "update"),
     path('group/create-group/', views.createGroup, name= "create"),
     path('group/delete-group/<str:key>', views.deleteGroup, name= "delete"),
+    path('group/delete_message/<str:key>', views.deleteMessage, name= "delete_message"),
 ]
