@@ -56,13 +56,15 @@ def home(request):
     print(query)
     groups = Group.objects.filter(topic__name__icontains = query)
     topics = Topic.objects.all()
+    group_messages = Messages.objects.all()
     # groups = Group.objects.all()
-    return render(request, 'index.html', {"groups":groups, 'topics':topics})
+    return render(request, 'index.html', {"groups":groups, 'topics':topics, 'group_messages':group_messages})
 
 def group(request, key):
     group = Group.objects.get(id=key)
     messages = group.messages_set.all().order_by('-created')
     participants = group.participants.all()
+
     if(request.method == 'POST'):
         message= Messages.objects.create(
             user= request.user, group = group, body= request.POST.get('body')
