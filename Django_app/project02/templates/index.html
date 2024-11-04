@@ -14,26 +14,11 @@
 </style>
 <div class="home-content">
     <div class="sidebar">
-        <h2>Topics avaiable:</h2>
-        <hr>
-        <div>
-            <a href="{% url 'base:home' %}">All</a>
-        </div>
-        {% for topic in topics%}
-        <div><a href="{% url 'base:home' %}?query={{topic.name}}">{{topic.name}}</a></div>
-        {% endfor %}
+      {% include 'base/topic_component.html' %}
     </div>
    <div>
          <!-- {% include 'nav.html' %} -->
-         <h1>Home Pages</h1>
-         <a href="group/create-group/">Create group</a>
-         {% for group in groups %}
-     
-         <p>Group ID: <a href="/group/{{group.id}}">{{group.id}}</a> , Name: {{group.name}}, Description: {{group.description}}</p>
-         <a href="group/update-group/{{group.id}}">Update</a>
-         <a href="group/delete-group/{{group.id}}">Delete</a>
-         {% endfor %}
-     
+       {% include 'base/feeds_component.html' %}
    </div>
    <div>
     {% include 'base/activity_component.html' %}
