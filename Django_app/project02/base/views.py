@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from .models import Group, Topic, Messages
 from .forms import GroupForm
+from django.db.models import Q
 # Create your views here.
 # groups = [
 #     {"id":1, "name": 'group1', "desc":"group1 desc"},
@@ -56,7 +57,7 @@ def home(request):
     print(query)
     groups = Group.objects.filter(topic__name__icontains = query)
     topics = Topic.objects.all()
-    group_messages = Messages.objects.all()
+    group_messages = Messages.objects.all(Q(group__topic__name__icontains = query))
     # groups = Group.objects.all()
     return render(request, 'index.html', {"groups":groups, 'topics':topics, 'group_messages':group_messages})
 
