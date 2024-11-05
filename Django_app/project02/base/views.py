@@ -82,6 +82,16 @@ def group(request, key):
 #     return HttpResponse(key)
 #     # return render(request, 'group.html')
 
+@login_required(login_ur = 'login')
+def userProfile(request, key):
+    user = User.objects.get(id = key)
+    groups = user.group_set.all()
+    group_messages = user.messages_set.all()
+    topics = Topic.objects.all()
+    return render(request, 'base/profile.html', {'user':user, 'groups':groups, 'group_messages': group_messages, 'topics':topics})
+
+
+
 @login_required(login_url='login')
 def createGroup(request):
     form = GroupForm()
